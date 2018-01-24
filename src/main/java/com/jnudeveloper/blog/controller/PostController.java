@@ -1,19 +1,21 @@
 package com.jnudeveloper.blog.controller;
 
-import com.jnudeveloper.blog.entity.PostEntity;
+
 import com.jnudeveloper.blog.mapper.PostMapper;
-import com.jnudeveloper.blog.thriftgen.domain.TCUDResult;
-import com.jnudeveloper.blog.thriftgen.domain.TPost;
-import com.jnudeveloper.blog.thriftgen.domain.TQuery;
-import com.jnudeveloper.blog.thriftgen.domain.TTag;
+import com.jnudeveloper.blog.thriftgen.domain.Request;
+import com.jnudeveloper.blog.thriftgen.domain.Response;
 import com.jnudeveloper.blog.thriftgen.service.PostService;
 import org.apache.thrift.TException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import java.util.List;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.alibaba.fastjson.JSON;
 import com.jnudeveloper.blog.domain.Post;
 
 @Controller
@@ -24,49 +26,54 @@ public class PostController implements PostService.Iface{
     private PostMapper postMapper;
 
     @Override
-    public TPost findById(int id) throws TException {
+    public Response findById(Request req) throws TException {
         System.out.println("connect");
-        Post post = postMapper.findById(id);
-        return Post.format(post);
+
+        Map request = JSON.parseObject(req.data);
+
+        Post post = postMapper.findById((int )request.get("id"));
+
+        Response response = new Response();
+        response.code = 0;
+        response.msg = null;
+        response.data = JSON.toJSONString(post);
+        return response;
     }
 
     @Override
-    public List<TPost> find(TQuery tQuery) throws TException {
-//        System.out.println("where : " + tQuery.where);
-//
-//        Query query = new Query(tQuery);
-//        Post post = new Post();
-//        return Post.format(post.find(query));
+    public Response findAll(Request req) throws TException {
+//        List<Post> posts = postMapper.findAll();
+//        return Post.format(posts);
         return null;
     }
 
     @Override
-    public List<TPost> findAll() throws TException {
+    public Response create(Request req) throws TException {
         return null;
     }
 
     @Override
-    public TCUDResult create(TPost post) throws TException {
+    public Response createWithTags(Request req) throws TException {
         return null;
     }
 
     @Override
-    public TCUDResult createWithTags(TPost post, List<TTag> tagList) throws TException {
+    public Response update(Request req) throws TException {
         return null;
     }
 
     @Override
-    public TCUDResult update(TPost post) throws TException {
+    public Response updateWithTags(Request req) throws TException {
         return null;
     }
 
     @Override
-    public TCUDResult updateWithTags(TPost post, List<TTag> tagList) throws TException {
+    public Response deleteById(Request req) throws TException {
         return null;
     }
 
     @Override
-    public TCUDResult deleteById(int id) throws TException {
-        return null;
+    public int ping(int seq) throws TException {
+        return 0;
     }
 }

@@ -1,7 +1,5 @@
 package com.jnudeveloper.blog.domain;
 
-import com.jnudeveloper.blog.thriftgen.domain.TQuery;
-
 import java.util.List;
 import java.util.Map;
 
@@ -29,22 +27,6 @@ public class Query {
 
     private Map<String, String> params;
 
-
-    public Query(TQuery query){
-        this.where = query.where;
-        this.limit = query.limit;
-        this.offset = query.offset;
-        this.orderBy = query.orderBy;
-        this.select = query.select;
-        this.selectOption = query.selectOption;
-        this.distinct = query.distinct;
-        this.from = query.fromTable;
-        this.groupBy = query.groupBy;
-        this.join = query.join;
-        this.having = query.having;
-        this.union = query.unions;
-        this.params = query.params;
-    }
 
     public String getWhere() {
         return where;

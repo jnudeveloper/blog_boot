@@ -1,7 +1,9 @@
 package com.jnudeveloper.blog.entity;
 
 import com.jnudeveloper.blog.domain.Post;
-import com.jnudeveloper.blog.thriftgen.domain.TPost;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PostEntity {
     private int id;
@@ -9,12 +11,12 @@ public class PostEntity {
     private String summary;
     private String content;
     private int status;
-    private int create_time;
-    private int update_time;
-    private int author_id;
-    private int approve_num;
-    private int collect_num;
-    private int comment_num;
+    private int createTime;
+    private int updateTime;
+    private int authorId;
+    private int approveNum;
+    private int collectNum;
+    private int commentNum;
 
     public int getId() {
         return id;
@@ -56,52 +58,52 @@ public class PostEntity {
         this.status = status;
     }
 
-    public int getCreate_time() {
-        return create_time;
+    public int getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(int create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(int createTime) {
+        this.createTime = createTime;
     }
 
-    public int getUpdate_time() {
-        return update_time;
+    public int getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdate_time(int update_time) {
-        this.update_time = update_time;
+    public void setUpdateTime(int updateTime) {
+        this.updateTime = updateTime;
     }
 
-    public int getAuthor_id() {
-        return author_id;
+    public int getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthor_id(int author_id) {
-        this.author_id = author_id;
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
     }
 
-    public int getApprove_num() {
-        return approve_num;
+    public int getApproveNum() {
+        return approveNum;
     }
 
-    public void setApprove_num(int approve_num) {
-        this.approve_num = approve_num;
+    public void setApproveNum(int approveNum) {
+        this.approveNum = approveNum;
     }
 
-    public int getCollect_num() {
-        return collect_num;
+    public int getCollectNum() {
+        return collectNum;
     }
 
-    public void setCollect_num(int collect_num) {
-        this.collect_num = collect_num;
+    public void setCollectNum(int collectNum) {
+        this.collectNum = collectNum;
     }
 
-    public int getComment_num() {
-        return comment_num;
+    public int getCommentNum() {
+        return commentNum;
     }
 
-    public void setComment_num(int comment_num) {
-        this.comment_num = comment_num;
+    public void setCommentNum(int commentNum) {
+        this.commentNum = commentNum;
     }
 
     @Override
@@ -112,29 +114,12 @@ public class PostEntity {
                 ", summary='" + summary + '\'' +
                 ", content='" + content + '\'' +
                 ", status=" + status +
-                ", create_time=" + create_time +
-                ", update_time=" + update_time +
-                ", author_id=" + author_id +
-                ", approve_num=" + approve_num +
-                ", collect_num=" + collect_num +
-                ", comment_num=" + comment_num +
+                ", create_time=" + createTime +
+                ", update_time=" + updateTime +
+                ", author_id=" + authorId +
+                ", approve_num=" + approveNum +
+                ", collect_num=" + collectNum +
+                ", comment_num=" + commentNum +
                 '}';
-    }
-
-    public static TPost format(Post post){
-        TPost tPost = new TPost();
-        tPost.id = post.getId();
-        tPost.title = post.getTitle();
-        tPost.summary = post.getSummary();
-        tPost.content = post.getContent();
-        tPost.status = post.getStatus();
-        tPost.create_time = post.getCreate_time();
-        tPost.update_time = post.getUpdate_time();
-        tPost.author_id = post.getAuthor_id();
-        tPost.approve_num = post.getApprove_num();
-        tPost.collect_num = post.getCollect_num();
-        tPost.comment_num = post.getComment_num();
-
-        return tPost;
     }
 }

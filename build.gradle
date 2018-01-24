@@ -38,6 +38,6 @@ dependencies {
 
 
 	compile('commons-dbcp:commons-dbcp')
-	compile('com.alibaba:fastjson')
+	compile('com.alibaba:fastjson:1.2.44')
 	compile('org.apache.thrift:libthrift:0.10.0')
 }
