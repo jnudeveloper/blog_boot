@@ -27,4 +27,4 @@ nbdist/
 
 
 ### thrift gen ###
-src/main/java/com/jnudeveloper.blog/thriftgen
+src/main/java/com/jnudeveloper/blog/thriftgen
