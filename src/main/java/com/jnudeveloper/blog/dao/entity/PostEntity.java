@@ -1,9 +1,4 @@
-package com.jnudeveloper.blog.entity;
-
-import com.jnudeveloper.blog.domain.Post;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.jnudeveloper.blog.dao.entity;
 
 public class PostEntity {
     private int id;

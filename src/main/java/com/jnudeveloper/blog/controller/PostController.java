@@ -1,50 +1,28 @@
 package com.jnudeveloper.blog.controller;
 
-
-import com.jnudeveloper.blog.mapper.PostMapper;
+import com.jnudeveloper.blog.action.post.FindAllAction;
+import com.jnudeveloper.blog.action.post.FindByIdAction;
 import com.jnudeveloper.blog.thriftgen.domain.Request;
 import com.jnudeveloper.blog.thriftgen.domain.Response;
 import com.jnudeveloper.blog.thriftgen.service.PostService;
 import org.apache.thrift.TException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.alibaba.fastjson.JSON;
-import com.jnudeveloper.blog.domain.Post;
 
 @Controller
 public class PostController implements PostService.Iface{
-    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @Autowired
-    private PostMapper postMapper;
 
     @Override
     public Response findById(Request req) throws TException {
-        System.out.println("connect");
+        FindByIdAction action = new FindByIdAction();
 
-        Map request = JSON.parseObject(req.data);
-
-        Post post = postMapper.findById((int )request.get("id"));
-
-        Response response = new Response();
-        response.code = 0;
-        response.msg = null;
-        response.data = JSON.toJSONString(post);
-        return response;
+        return action.run(req);
     }
 
     @Override
     public Response findAll(Request req) throws TException {
-//        List<Post> posts = postMapper.findAll();
-//        return Post.format(posts);
-        return null;
+        FindAllAction action = new FindAllAction();
+
+        return action.run(req);
     }
 
     @Override
