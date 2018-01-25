@@ -38,12 +38,6 @@ public class ThriftServer {
     }
 
     public void start() {
-        //加法
-        //AdditionService.Processor additionProcessor = new AdditionService.Processor<>(new AdditionHandler());
-
-        //乘法
-        //MultiplicationService.Processor multiplicationProcessor = new MultiplicationService.Processor<>(new MultiplicationHandler());
-
         TMultiplexedProcessor processor = new TMultiplexedProcessor();
         processor.registerProcessor(PostService.class.getSimpleName(), new PostService.Processor<>(postController));
         init();

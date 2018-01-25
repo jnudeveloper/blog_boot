@@ -22,7 +22,6 @@ public class FindAllAction extends BaseAction {
      * 版本 0.0.1
      **/
     public Response v0_0_1(Request req){
-        //TODO 检验请求的有效性
         Map request = JSON.parseObject(req.data);
         List<Post> posts = this.postMapper.findAll();
 
