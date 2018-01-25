@@ -9,10 +9,14 @@ import org.apache.thrift.TException;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class PostController implements PostService.Iface{
+public class PostController extends BaseController implements PostService.Iface{
 
     @Override
     public Response findById(Request req) throws TException {
+        if(!this.validateRequest(req)){
+            return this.getResponseOfInvalidRequest();
+        }
+
         FindByIdAction action = new FindByIdAction();
 
         return action.run(req);
@@ -20,6 +24,10 @@ public class PostController implements PostService.Iface{
 
     @Override
     public Response findAll(Request req) throws TException {
+        if(!this.validateRequest(req)){
+            return this.getResponseOfInvalidRequest();
+        }
+
         FindAllAction action = new FindAllAction();
 
         return action.run(req);

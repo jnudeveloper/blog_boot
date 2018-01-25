@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-@Controller
 public class BaseAction {
 
     public Response run(Request req){
@@ -26,6 +25,9 @@ public class BaseAction {
         }
     }
 
+    /**
+     * 在run()方法中抛出异常时进行处理
+     * */
     protected Response processException(Exception e){
         //TODO 记录日志
         Response response = new Response();
