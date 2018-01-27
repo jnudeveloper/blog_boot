@@ -8,8 +8,8 @@ import java.util.List;
 @Mapper
 public interface PostMapper {
 
-    @Select(value="SELECT * FROM tbl_post WHERE id = #{id}")
-    @Results(value={
+    @Select(value = "SELECT * FROM tbl_post WHERE id = #{id}")
+    @Results(id = "postResult", value = {
             @Result(property = "createTime",  column = "create_time"),
             @Result(property = "updateTime", column = "update_time"),
             @Result(property = "authorId", column = "author_id"),
@@ -19,14 +19,8 @@ public interface PostMapper {
     })
     Post findById(@Param(value="id") int id);
 
-    @Select(value="SELECT * FROM tbl_post")
-    @Results(value={
-            @Result(property = "createTime",  column = "create_time"),
-            @Result(property = "updateTime", column = "update_time"),
-            @Result(property = "authorId", column = "author_id"),
-            @Result(property = "approveNum", column = "approve_num"),
-            @Result(property = "collectNum", column = "collect_num"),
-            @Result(property = "commentNum", column = "comment_num"),
-    })
+    @Select(value = "SELECT * FROM tbl_post")
+    @ResultMap(value = "postResult")
     List<Post> findAll();
+
 }
